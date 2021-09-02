@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         JsonPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);
 
-        Call<List<Post>> call = jsonPlaceHolderAPI.getPosts();
+        Call<List<Post>> call = jsonPlaceHolderAPI.getAnyPosts();
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
