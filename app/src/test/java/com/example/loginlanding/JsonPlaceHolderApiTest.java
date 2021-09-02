@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JsonPlaceHolderApiTest {
     @Test
-    public void getAnyPosts_isSuccessful() {
+    public void getPosts_isSuccessful() {
         Random rand = new Random();
 
         int userId = rand.nextInt(11);
@@ -31,9 +31,9 @@ public class JsonPlaceHolderApiTest {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        JsonPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        Call<List<Post>> call = jsonPlaceHolderAPI.getPosts(userId);
+        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(userId);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override

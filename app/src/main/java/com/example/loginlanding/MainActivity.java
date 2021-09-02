@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     private TextView textViewResult;
 
-    private JsonPlaceHolderAPI jsonPlaceHolderAPI;
+    private JsonPlaceHolderApi jsonPlaceHolderApi;
 
     private int testId =3;
 
@@ -32,14 +32,15 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);
+        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
         int testId = 3;
 
         getPosts(testId);
     }
+
     private void getPosts(int id) {
-        Call<List<Post>> call = jsonPlaceHolderAPI.getPosts(3);
+        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(3);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
