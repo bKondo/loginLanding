@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 //        Log.d(ACTIVITY_LABEL, "usernames: " + usernames);
 
         for (int i = 1; i < 11; i++) {
-            passwords.add(String.format("pass%d",i));
+            passwords.add(String.format("pass%d", i));
         }
 
 //        Log.d(ACTIVITY_LABEL, "passwords: " + passwords);
