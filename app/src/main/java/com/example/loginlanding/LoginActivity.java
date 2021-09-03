@@ -69,9 +69,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 editText_password.setHighlightColor(Color.TRANSPARENT);
 
-                Log.d(ACTIVITY_LABEL, "username: " + username);
+//                Log.d(ACTIVITY_LABEL, "username: " + username);
 
-                Log.d(ACTIVITY_LABEL, "pass: " + password);
+//                Log.d(ACTIVITY_LABEL, "pass: " + password);
 
                 if (usernames.contains(username)) {
                     int index = usernames.indexOf(username);
@@ -81,12 +81,12 @@ public class LoginActivity extends AppCompatActivity {
                         // send index num of user and username to main
                     } else {
                         Toast.makeText(LoginActivity.this, "incorrect password", Toast.LENGTH_LONG).show();
-                        editText_password.setHighlightColor(Color.RED);
+                        editText_password.setBackgroundColor(Color.RED);
                     }
 
                 } else {
                     Toast.makeText(LoginActivity.this, "incorrect username", Toast.LENGTH_LONG).show();
-                    editText_username.setHighlightColor(Color.RED);
+                    editText_username.setBackgroundColor(Color.RED);
                 }
             }
         });
