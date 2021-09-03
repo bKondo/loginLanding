@@ -80,12 +80,12 @@ public class LoginActivity extends AppCompatActivity {
                         // success, change activity to main
                         // send index num of user and username to main
                     } else {
-                        Toast.makeText(LoginActivity.this, "incorrect password", Toast.LENGTH_LONG);
+                        Toast.makeText(LoginActivity.this, "incorrect password", Toast.LENGTH_LONG).show();
                         editText_password.setHighlightColor(Color.RED);
                     }
 
                 } else {
-                    Toast.makeText(LoginActivity.this, "incorrect username", Toast.LENGTH_LONG);
+                    Toast.makeText(LoginActivity.this, "incorrect username", Toast.LENGTH_LONG).show();
                     editText_username.setHighlightColor(Color.RED);
                 }
             }
