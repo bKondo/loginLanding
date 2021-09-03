@@ -69,6 +69,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 editText_password.setHighlightColor(Color.TRANSPARENT);
 
+                Log.d(ACTIVITY_LABEL, "username: " + username);
+
+                Log.d(ACTIVITY_LABEL, "pass: " + password);
+
                 if (usernames.contains(username)) {
                     int index = usernames.indexOf(username);
 
