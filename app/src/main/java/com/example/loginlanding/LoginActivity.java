@@ -2,10 +2,16 @@ package com.example.loginlanding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import java.util.ArrayList;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
     public static final String ACTIVITY_LABEL = "LOGIN_ACTIVITY";
@@ -13,6 +19,14 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<String> usernames = new ArrayList<>();
 
     private ArrayList<String> passwords = new ArrayList<>();
+
+    private Button loginButton;
+
+    private EditText editText_username;
+
+    private EditText editText_password;
+
+    private TextView errMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +51,40 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        loginButton = findViewById(R.id.login_button_login);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText_username = findViewById(R.id.login_editText_username);
+
+                editText_password = findViewById(R.id.login_editText_password);
+
+                String username = editText_username.getText().toString();
+
+                String password = editText_password.getText().toString();
+
+                editText_username.setHighlightColor(Color.TRANSPARENT);
+
+                editText_password.setHighlightColor(Color.TRANSPARENT);
+
+                if (usernames.contains(username)) {
+                    int index = usernames.indexOf(username);
+
+                    if (password.equals(passwords.get(index))) {
+                        // success, change activity to main
+                        // send index num of user and username to main
+                    } else {
+                        Toast.makeText(LoginActivity.this, "incorrect password", Toast.LENGTH_LONG);
+                        editText_password.setHighlightColor(Color.RED);
+                    }
+
+                } else {
+                    Toast.makeText(LoginActivity.this, "incorrect username", Toast.LENGTH_LONG);
+                    editText_username.setHighlightColor(Color.RED);
+                }
+            }
+        });
     }
 }
