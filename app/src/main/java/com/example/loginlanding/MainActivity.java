@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        int testId = 3;
-
         getPosts(testId);
     }
 
