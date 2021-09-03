@@ -27,13 +27,13 @@ public class LoginActivity extends AppCompatActivity {
         usernames.add("Delphine");
         usernames.add("Moriah");
 
-        Log.d(ACTIVITY_LABEL, "usernames: " + usernames);
+//        Log.d(ACTIVITY_LABEL, "usernames: " + usernames);
 
         for (int i = 1; i < 11; i++) {
             passwords.add(String.format("pass%d",i));
         }
 
-        Log.d(ACTIVITY_LABEL, "passwords: " + passwords);
+//        Log.d(ACTIVITY_LABEL, "passwords: " + passwords);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
