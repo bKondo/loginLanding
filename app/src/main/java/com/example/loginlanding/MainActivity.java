@@ -2,6 +2,8 @@ package com.example.loginlanding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -14,11 +16,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String ACTIVITY_LABEL = "MAIN_ACTIVITY";
+
     private TextView textViewResult;
 
     private JsonPlaceHolderApi jsonPlaceHolderApi;
 
-    private int testId =3;
+    private int userId = Integer.parseInt(getIntent().getStringExtra(LoginActivity.ACTIVITY_LABEL));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        getPosts(testId);
+        getPosts(userId);
     }
 
     private void getPosts(int id) {
@@ -66,5 +70,11 @@ public class MainActivity extends AppCompatActivity {
                 textViewResult.setText((t.getMessage()));
             }
         });
+    }
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+
+        return intent;
     }
 }
