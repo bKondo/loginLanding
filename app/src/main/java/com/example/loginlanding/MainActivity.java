@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,18 +17,27 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
+
     public static final String ACTIVITY_LABEL = "MAIN_ACTIVITY";
 
     private TextView textViewResult;
 
     private JsonPlaceHolderApi jsonPlaceHolderApi;
 
-    private int userId = Integer.parseInt(getIntent().getStringExtra(LoginActivity.ACTIVITY_LABEL));
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Bundle extras = new Bundle();
+
+        extras = getIntent().getExtras();
+
+        userId = extras.getInt(LoginActivity.ACTIVITY_LABEL);
+
+        Log.d(ACTIVITY_LABEL, "nextActivity> userId: " + userId);
 
         textViewResult = findViewById(R.id.text_view_result);
 
@@ -42,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getPosts(int id) {
-        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(3);
+        Log.d(ACTIVITY_LABEL, "getPosts> userId: " + id);
+
+        Call<List<Post>> call = jsonPlaceHolderApi.getPosts(id + 1);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
@@ -59,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     content += "ID: " + post.getId() + "\n";
                     content += "User ID: " + post.getUserId() + "\n";
                     content += "Title: " + post.getTitle() + "\n";
-                    content += "Text: " + post.getText() + "\n";
+                    content += "Text: " + post.getText() + "\n\n";
 
                     textViewResult.append(content);
                 }
@@ -72,8 +84,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, LoginActivity.class);
+    public static Intent getIntent(Context context, int userId) {
+        Intent intent = new Intent(context, MainActivity.class);
+
+        intent.putExtra(LoginActivity.ACTIVITY_LABEL, userId);
 
         return intent;
     }

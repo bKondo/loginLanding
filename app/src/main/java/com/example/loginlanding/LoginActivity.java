@@ -16,11 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
+
     public static final String ACTIVITY_LABEL = "LOGIN_ACTIVITY";
 
-    private ArrayList<String> usernames = new ArrayList<>();
+    private ArrayList<String> usernames = new ArrayList<String>();
 
-    private ArrayList<String> passwords = new ArrayList<>();
+    private ArrayList<String> passwords = new ArrayList<String>();
 
     private Button loginButton;
 
@@ -32,6 +33,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        // create list of valid usernames
         usernames.add("Bret");
         usernames.add("Antonette");
         usernames.add("Samantha");
@@ -43,16 +48,14 @@ public class LoginActivity extends AppCompatActivity {
         usernames.add("Delphine");
         usernames.add("Moriah");
 
-//        Log.d(ACTIVITY_LABEL, "usernames: " + usernames);
+        Log.d(ACTIVITY_LABEL, "usernames: " + usernames);
 
+        // create valid passwords that pair with usernames using their index number
         for (int i = 1; i < 11; i++) {
             passwords.add(String.format("pass%d", i));
         }
 
-//        Log.d(ACTIVITY_LABEL, "passwords: " + passwords);
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        Log.d(ACTIVITY_LABEL, "passwords: " + passwords);
 
         loginButton = findViewById(R.id.login_button_login);
 
@@ -67,21 +70,21 @@ public class LoginActivity extends AppCompatActivity {
 
                 String password = editText_password.getText().toString();
 
-                editText_username.setHighlightColor(Color.TRANSPARENT);
+                editText_username.setBackgroundColor(Color.TRANSPARENT);
 
-                editText_password.setHighlightColor(Color.TRANSPARENT);
+                editText_password.setBackgroundColor(Color.TRANSPARENT);
 
 //                Log.d(ACTIVITY_LABEL, "username: " + username);
 
 //                Log.d(ACTIVITY_LABEL, "pass: " + password);
 
-                if (usernames.contains(username)) {
+                if (checkUsername(username)) {
                     int index = usernames.indexOf(username);
 
-                    if (password.equals(passwords.get(index))) {
+                    if (checkPassword(index, password)) {
                         // success, change activity to main
                         // send index num of user and username to main
-                        nextActivity(this, index);
+                        nextActivity(index);
 
                     } else {
                         Toast.makeText(LoginActivity.this, "incorrect password", Toast.LENGTH_LONG).show();
@@ -96,10 +99,18 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void nextActivity(View view, int userId) {
-        Intent intent = MainActivity.getIntent(getApplicationContext());
+    public Boolean checkUsername(String username) {
+        return usernames.contains(username);
+    }
 
-        intent.putExtra(LoginActivity.ACTIVITY_LABEL, userId);
+    public Boolean checkPassword(int userIndex, String password) {
+        return password.equals(passwords.get(userIndex));
+    }
+
+    public void nextActivity(int userId) {
+        Log.d(ACTIVITY_LABEL, "nextActivity> userId: " + userId);
+
+        Intent intent = MainActivity.getIntent(getApplicationContext(), userId);
 
         startActivity(intent);
     }
