@@ -63,19 +63,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editText_username = findViewById(R.id.login_editText_username);
-
                 editText_password = findViewById(R.id.login_editText_password);
 
                 String username = editText_username.getText().toString();
-
                 String password = editText_password.getText().toString();
 
                 editText_username.setBackgroundColor(Color.TRANSPARENT);
-
                 editText_password.setBackgroundColor(Color.TRANSPARENT);
 
 //                Log.d(ACTIVITY_LABEL, "username: " + username);
-
 //                Log.d(ACTIVITY_LABEL, "pass: " + password);
 
                 if (checkUsername(username)) {
