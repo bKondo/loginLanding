@@ -21,9 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String ACTIVITY_LABEL = "MAIN_ACTIVITY";
 
     private TextView textViewResult;
-
     private JsonPlaceHolderApi jsonPlaceHolderApi;
-
     private int userId;
 
     @Override
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         Bundle extras = new Bundle();
 
         extras = getIntent().getExtras();
-
         userId = extras.getInt(LoginActivity.ACTIVITY_LABEL);
 
         Log.d(ACTIVITY_LABEL, "nextActivity> userId: " + userId);
