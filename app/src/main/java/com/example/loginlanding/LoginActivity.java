@@ -2,6 +2,8 @@ package com.example.loginlanding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -79,6 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (password.equals(passwords.get(index))) {
                         // success, change activity to main
                         // send index num of user and username to main
+                        nextActivity(this, index);
+
                     } else {
                         Toast.makeText(LoginActivity.this, "incorrect password", Toast.LENGTH_LONG).show();
                         editText_password.setBackgroundColor(Color.RED);
@@ -90,5 +94,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void nextActivity(View view, int userId) {
+        Intent intent = MainActivity.getIntent(getApplicationContext());
+
+        intent.putExtra(LoginActivity.ACTIVITY_LABEL, userId);
+
+        startActivity(intent);
     }
 }
